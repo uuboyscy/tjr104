@@ -1,0 +1,43 @@
+{
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "streetsidesoftware.code-spell-checker",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "shardulm94.trailing-spaces",
+        "vivaxy.vscode-conventional-commits",
+        "bierner.markdown-mermaid",
+        "ms-python.black-formatter",
+        "ms-python.isort"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4,
+        "editor.rulers": [
+          100
+        ]
+      }
+    }
+  },
+  // "mounts": [
+  //   "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh_mounted,type=bind,consistency=cached",
+  //   "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig_mounted,type=bind,consistency=cached"
+  // ],
+  "remoteEnv": {
+    "PYTHONPATH": "/workspaces/demo-devcontainer/src"
+  },
+  "postCreateCommand": "sh ./.devcontainer/postCreateCommand.sh",
+  "runArgs": [
+    "--name",
+    "demo-devcontainer",
+    "--network",
+    "host"
+  ]
+}
