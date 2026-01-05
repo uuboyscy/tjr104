@@ -5,3 +5,5 @@
 ## tmp_note
 
 - [quick_20251229](quick_note/note_20251229.md)
+- [quick_20260105](quick_note/note_20260105.md)
+
