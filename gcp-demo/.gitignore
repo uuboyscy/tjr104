@@ -1,0 +1,4 @@
+artifact-registry-user.json
+bigquery-user.json
+secret-manager-viewer.json
+.env
