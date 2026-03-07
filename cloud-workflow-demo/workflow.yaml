@@ -1,0 +1,31 @@
+main:
+  steps:
+    - init:
+        assign:
+          - project_id: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+          - region: "europe-west1"
+          - job_name: "job-demo"
+          - notify_url: "https://uuboyscy.dev"
+          
+    - execute_cloud_run_job:
+        call: googleapis.run.v1.namespaces.jobs.run
+        args:
+          name: ${"namespaces/" + project_id + "/jobs/" + job_name}
+          location: ${region}
+        result: job_result
+        
+    - notify_user_via_api:
+        call: http.post
+        args:
+          url: ${notify_url}
+          body:
+            status: "success"
+            job_name: ${job_name}
+            message: "Cloud Run job execution finished successfully."
+            # job_details: ${job_result} # Optional: include job result details if needed
+        result: notify_result
+        
+    - final_return:
+        return: 
+          job_status: ${job_result}
+          notification_status: ${notify_result}
